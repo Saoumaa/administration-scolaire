@@ -1,0 +1,14 @@
+Oracle SQL Developer Data Modeler 4.1.5.907
+Oracle SQL Developer Data Modeler Journal d'import
+Date et heure : 2017-04-17 15:46:57 WAT
+Nom de la conception : MLR_REP_PRIX
+RDBMS : Oracle Database 10g
+
+		Toutes les instructions : 		3
+		Instructions importées : 	2
+		Instructions en échec : 		0
+		Instructions non reconnues : 	1
+
+<<<<< Non reconnu >>>>>
+DROP TABLE MOBILIER_BUREAU CASCADE CONSTRAINTS
+

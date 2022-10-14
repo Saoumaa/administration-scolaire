@@ -1,0 +1,661 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="bulletinNotes" language="groovy" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="0" whenResourceMissingType="Empty" uuid="67c6d9c2-2d24-42db-b09e-efa701437cb5">
+	<property name="ireport.zoom" value="1.0000000000000029"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="192"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#FFFFFF" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<parameter name="ID_BULLETIN" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     ANNEE_SCOLAIRE."ID_ANNEE_SCOLAIRE" AS ANNEE_SCOLAIRE_ID_ANNEE_SCOLAI,
+     ANNEE_SCOLAIRE."ANNEE_DEBUT" AS ANNEE_SCOLAIRE_ANNEE_DEBUT,
+     ANNEE_SCOLAIRE."ANNEE_FIN" AS ANNEE_SCOLAIRE_ANNEE_FIN,
+     BULLETIN_NOTE."ID_BULLETIN" AS BULLETIN_NOTE_ID_BULLETIN,
+     BULLETIN_NOTE."APRE_CHEF_ETABLIS" AS BULLETIN_NOTE_APRE_CHEF_ETABLI,
+     BULLETIN_NOTE."MOY_CLASSE" AS BULLETIN_NOTE_MOY_CLASSE,
+     BULLETIN_NOTE."MOY_TRIM" AS BULLETIN_NOTE_MOY_TRIM,
+     BULLETIN_NOTE."PLUS_FAIBLE_MOY" AS BULLETIN_NOTE_PLUS_FAIBLE_MOY,
+     BULLETIN_NOTE."PLUS_FORTE_MOY" AS BULLETIN_NOTE_PLUS_FORTE_MOY,
+     BULLETIN_NOTE."RANG" AS BULLETIN_NOTE_RANG,
+     BULLETIN_NOTE."ID_ELEVE_GP" AS BULLETIN_NOTE_ID_ELEVE_GP,
+     BULLETIN_NOTE."ID_TRIMES" AS BULLETIN_NOTE_ID_TRIMES,
+     COEFFICIENT."ID_COEF" AS COEFFICIENT_ID_COEF,
+     COEFFICIENT."VALEUR_COEF" AS COEFFICIENT_VALEUR_COEF,
+     COEFFICIENT."ID_GROUP_PEDAG" AS COEFFICIENT_ID_GROUP_PEDAG,
+     COEFFICIENT."ID_MATIERE" AS COEFFICIENT_ID_MATIERE,
+     DETAILS_BULLETIN."ID_DETAILS_BULLETIN" AS DETAILS_BULLETIN_ID_DETAILS_BU,
+     DETAILS_BULLETIN."APPRE_SIGNE_PROF" AS DETAILS_BULLETIN_APPRE_SIGNE_P,
+     DETAILS_BULLETIN."COMPO_NOTE" AS DETAILS_BULLETIN_COMPO_NOTE,
+     DETAILS_BULLETIN."DEV_NOTE" AS DETAILS_BULLETIN_DEV_NOTE,
+     DETAILS_BULLETIN."INT1" AS DETAILS_BULLETIN_INT1,
+     DETAILS_BULLETIN."INT2" AS DETAILS_BULLETIN_INT2,
+     DETAILS_BULLETIN."INT3" AS DETAILS_BULLETIN_INT3,
+     DETAILS_BULLETIN."INT4" AS DETAILS_BULLETIN_INT4,
+     DETAILS_BULLETIN."MOY_20" AS DETAILS_BULLETIN_MOY_20,
+     DETAILS_BULLETIN."MOY_COEF" AS DETAILS_BULLETIN_MOY_COEF,
+     DETAILS_BULLETIN."MOY_INT" AS DETAILS_BULLETIN_MOY_INT,
+     DETAILS_BULLETIN."RANG" AS DETAILS_BULLETIN_RANG,
+     DETAILS_BULLETIN."ID_BULLETIN" AS DETAILS_BULLETIN_ID_BULLETIN,
+     DETAILS_BULLETIN."ID_COEF" AS DETAILS_BULLETIN_ID_COEF,
+     ELEVE."ID_ELEVE" AS ELEVE_ID_ELEVE,
+     ELEVE."DATE_INSCRI" AS ELEVE_DATE_INSCRI,
+     ELEVE."DATE_NAIS" AS ELEVE_DATE_NAIS,
+     ELEVE."LIEU_NAIS" AS ELEVE_LIEU_NAIS,
+     ELEVE."MATRICULE_EL" AS ELEVE_MATRICULE_EL,
+     ELEVE."NOM_EL" AS ELEVE_NOM_EL,
+     ELEVE."PHOTO_IDENT" AS ELEVE_PHOTO_IDENT,
+     ELEVE."PRENOM_EL" AS ELEVE_PRENOM_EL,
+     ELEVE."SEXE" AS ELEVE_SEXE,
+     ELEVE_GP."ID_ELEVE_GP" AS ELEVE_GP_ID_ELEVE_GP,
+     ELEVE_GP."REGIME_ELEVE" AS ELEVE_GP_REGIME_ELEVE,
+     ELEVE_GP."STATUT_ELEVE" AS ELEVE_GP_STATUT_ELEVE,
+     ELEVE_GP."ID_ANNEE_SCOLAIRE" AS ELEVE_GP_ID_ANNEE_SCOLAIRE,
+     ELEVE_GP."ID_ELEVE" AS ELEVE_GP_ID_ELEVE,
+     ELEVE_GP."ID_GROUP_PEDAG" AS ELEVE_GP_ID_GROUP_PEDAG,
+     GROUP_PEDAG."ID_GROUP_PEDAG" AS GROUP_PEDAG_ID_GROUP_PEDAG,
+     GROUP_PEDAG."EFFECTIF" AS GROUP_PEDAG_EFFECTIF,
+     GROUP_PEDAG."GROUP_PEDAG_ABREV" AS GROUP_PEDAG_GROUP_PEDAG_ABREV,
+     GROUP_PEDAG."LIB_GROUP_PEDAG" AS GROUP_PEDAG_LIB_GROUP_PEDAG,
+     GROUP_PEDAG."ID_PROMO" AS GROUP_PEDAG_ID_PROMO,
+     GROUP_PEDAG."ID_SERIE" AS GROUP_PEDAG_ID_SERIE,
+     MATIERE."ID_MATIERE" AS MATIERE_ID_MATIERE,
+     MATIERE."LIB_MATIERE" AS MATIERE_LIB_MATIERE,
+     SERIE."ID_SERIE" AS SERIE_ID_SERIE,
+     SERIE."LIB_SERIE" AS SERIE_LIB_SERIE,
+     TRIMESTRE."ID_TRIMES" AS TRIMESTRE_ID_TRIMES,
+     TRIMESTRE."LIB_TRIMES" AS TRIMESTRE_LIB_TRIMES,
+     TRIMESTRE."ID_ANNEE_SCOLAIRE" AS TRIMESTRE_ID_ANNEE_SCOLAIRE
+FROM
+     "SCOLAIRE2"."BULLETIN_NOTE" BULLETIN_NOTE INNER JOIN "SCOLAIRE2"."DETAILS_BULLETIN" DETAILS_BULLETIN ON BULLETIN_NOTE."ID_BULLETIN" = DETAILS_BULLETIN."ID_BULLETIN"
+     INNER JOIN "SCOLAIRE2"."COEFFICIENT" COEFFICIENT ON DETAILS_BULLETIN."ID_COEF" = COEFFICIENT."ID_COEF"
+     INNER JOIN "SCOLAIRE2"."GROUP_PEDAG" GROUP_PEDAG ON COEFFICIENT."ID_GROUP_PEDAG" = GROUP_PEDAG."ID_GROUP_PEDAG"
+     INNER JOIN "SCOLAIRE2"."MATIERE" MATIERE ON COEFFICIENT."ID_MATIERE" = MATIERE."ID_MATIERE"
+     INNER JOIN "SCOLAIRE2"."ELEVE_GP" ELEVE_GP ON GROUP_PEDAG."ID_GROUP_PEDAG" = ELEVE_GP."ID_GROUP_PEDAG"
+     INNER JOIN "SCOLAIRE2"."SERIE" SERIE ON GROUP_PEDAG."ID_SERIE" = SERIE."ID_SERIE"
+     AND ELEVE_GP."ID_ELEVE_GP" = BULLETIN_NOTE."ID_ELEVE_GP"
+     INNER JOIN "SCOLAIRE2"."ANNEE_SCOLAIRE" ANNEE_SCOLAIRE ON ELEVE_GP."ID_ANNEE_SCOLAIRE" = ANNEE_SCOLAIRE."ID_ANNEE_SCOLAIRE"
+     INNER JOIN "SCOLAIRE2"."ELEVE" ELEVE ON ELEVE_GP."ID_ELEVE" = ELEVE."ID_ELEVE"
+     INNER JOIN "SCOLAIRE2"."TRIMESTRE" TRIMESTRE ON ANNEE_SCOLAIRE."ID_ANNEE_SCOLAIRE" = TRIMESTRE."ID_ANNEE_SCOLAIRE"
+     AND TRIMESTRE."ID_TRIMES" = BULLETIN_NOTE."ID_TRIMES"
+AND DETAILS_BULLETIN."ID_BULLETIN"=$P{ID_BULLETIN}]]>
+	</queryString>
+	<field name="ANNEE_SCOLAIRE_ID_ANNEE_SCOLAI" class="java.math.BigDecimal"/>
+	<field name="ANNEE_SCOLAIRE_ANNEE_DEBUT" class="java.math.BigDecimal"/>
+	<field name="ANNEE_SCOLAIRE_ANNEE_FIN" class="java.math.BigDecimal"/>
+	<field name="BULLETIN_NOTE_ID_BULLETIN" class="java.math.BigDecimal"/>
+	<field name="BULLETIN_NOTE_APRE_CHEF_ETABLI" class="java.lang.String"/>
+	<field name="BULLETIN_NOTE_MOY_CLASSE" class="java.math.BigDecimal"/>
+	<field name="BULLETIN_NOTE_MOY_TRIM" class="java.math.BigDecimal"/>
+	<field name="BULLETIN_NOTE_PLUS_FAIBLE_MOY" class="java.math.BigDecimal"/>
+	<field name="BULLETIN_NOTE_PLUS_FORTE_MOY" class="java.math.BigDecimal"/>
+	<field name="BULLETIN_NOTE_RANG" class="java.math.BigDecimal"/>
+	<field name="BULLETIN_NOTE_ID_ELEVE_GP" class="java.math.BigDecimal"/>
+	<field name="BULLETIN_NOTE_ID_TRIMES" class="java.math.BigDecimal"/>
+	<field name="COEFFICIENT_ID_COEF" class="java.math.BigDecimal"/>
+	<field name="COEFFICIENT_VALEUR_COEF" class="java.math.BigDecimal"/>
+	<field name="COEFFICIENT_ID_GROUP_PEDAG" class="java.math.BigDecimal"/>
+	<field name="COEFFICIENT_ID_MATIERE" class="java.math.BigDecimal"/>
+	<field name="DETAILS_BULLETIN_ID_DETAILS_BU" class="java.math.BigDecimal"/>
+	<field name="DETAILS_BULLETIN_APPRE_SIGNE_P" class="java.lang.String"/>
+	<field name="DETAILS_BULLETIN_COMPO_NOTE" class="java.lang.String"/>
+	<field name="DETAILS_BULLETIN_DEV_NOTE" class="java.lang.String"/>
+	<field name="DETAILS_BULLETIN_INT1" class="java.lang.String"/>
+	<field name="DETAILS_BULLETIN_INT2" class="java.lang.String"/>
+	<field name="DETAILS_BULLETIN_INT3" class="java.lang.String"/>
+	<field name="DETAILS_BULLETIN_INT4" class="java.lang.String"/>
+	<field name="DETAILS_BULLETIN_MOY_20" class="java.math.BigDecimal"/>
+	<field name="DETAILS_BULLETIN_MOY_COEF" class="java.math.BigDecimal"/>
+	<field name="DETAILS_BULLETIN_MOY_INT" class="java.math.BigDecimal"/>
+	<field name="DETAILS_BULLETIN_RANG" class="java.math.BigDecimal"/>
+	<field name="DETAILS_BULLETIN_ID_BULLETIN" class="java.math.BigDecimal"/>
+	<field name="DETAILS_BULLETIN_ID_COEF" class="java.math.BigDecimal"/>
+	<field name="ELEVE_ID_ELEVE" class="java.math.BigDecimal"/>
+	<field name="ELEVE_DATE_INSCRI" class="java.sql.Timestamp"/>
+	<field name="ELEVE_DATE_NAIS" class="java.sql.Timestamp"/>
+	<field name="ELEVE_LIEU_NAIS" class="java.lang.String"/>
+	<field name="ELEVE_MATRICULE_EL" class="java.lang.String"/>
+	<field name="ELEVE_NOM_EL" class="java.lang.String"/>
+	<field name="ELEVE_PHOTO_IDENT" class="java.lang.String"/>
+	<field name="ELEVE_PRENOM_EL" class="java.lang.String"/>
+	<field name="ELEVE_SEXE" class="java.lang.String"/>
+	<field name="ELEVE_GP_ID_ELEVE_GP" class="java.math.BigDecimal"/>
+	<field name="ELEVE_GP_REGIME_ELEVE" class="java.lang.String"/>
+	<field name="ELEVE_GP_STATUT_ELEVE" class="java.lang.String"/>
+	<field name="ELEVE_GP_ID_ANNEE_SCOLAIRE" class="java.math.BigDecimal"/>
+	<field name="ELEVE_GP_ID_ELEVE" class="java.math.BigDecimal"/>
+	<field name="ELEVE_GP_ID_GROUP_PEDAG" class="java.math.BigDecimal"/>
+	<field name="GROUP_PEDAG_ID_GROUP_PEDAG" class="java.math.BigDecimal"/>
+	<field name="GROUP_PEDAG_EFFECTIF" class="java.math.BigDecimal"/>
+	<field name="GROUP_PEDAG_GROUP_PEDAG_ABREV" class="java.lang.String"/>
+	<field name="GROUP_PEDAG_LIB_GROUP_PEDAG" class="java.lang.String"/>
+	<field name="GROUP_PEDAG_ID_PROMO" class="java.math.BigDecimal"/>
+	<field name="GROUP_PEDAG_ID_SERIE" class="java.math.BigDecimal"/>
+	<field name="MATIERE_ID_MATIERE" class="java.math.BigDecimal"/>
+	<field name="MATIERE_LIB_MATIERE" class="java.lang.String"/>
+	<field name="SERIE_ID_SERIE" class="java.math.BigDecimal"/>
+	<field name="SERIE_LIB_SERIE" class="java.lang.String"/>
+	<field name="TRIMESTRE_ID_TRIMES" class="java.math.BigDecimal"/>
+	<field name="TRIMESTRE_LIB_TRIMES" class="java.lang.String"/>
+	<field name="TRIMESTRE_ID_ANNEE_SCOLAIRE" class="java.math.BigDecimal"/>
+	<variable name="nbreEl" class="java.lang.Number" calculation="Sum"/>
+	<group name="BULLETIN_NOTE_ID_TRIMES">
+		<groupExpression><![CDATA[$F{BULLETIN_NOTE_ID_TRIMES}]]></groupExpression>
+		<groupHeader>
+			<band height="107">
+				<staticText>
+					<reportElement style="Column header" x="227" y="25" width="48" height="15" forecolor="#000000" uuid="56dd9838-1a15-47d0-a5ae-3f28bff117b0"/>
+					<text><![CDATA[Effectif]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement style="Detail" x="281" y="25" width="56" height="15" uuid="84b6fa81-d93e-4623-ba51-d295b9792b3f"/>
+					<textFieldExpression><![CDATA[$F{GROUP_PEDAG_EFFECTIF}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="Column header" x="225" y="87" width="48" height="15" forecolor="#000000" uuid="6019a205-74dc-4bb8-8f09-dbfd0e89b5a3"/>
+					<text><![CDATA[Classe]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement style="Detail" x="279" y="87" width="56" height="15" uuid="b69bed5a-58cb-40b0-9064-8f3d66f26804"/>
+					<textFieldExpression><![CDATA[$F{GROUP_PEDAG_GROUP_PEDAG_ABREV}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="Column header" x="227" y="59" width="48" height="15" forecolor="#000000" uuid="23912fe4-276d-4195-b022-72e1894bf68d"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<text><![CDATA[Régime]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement style="Detail" x="281" y="59" width="56" height="15" uuid="64265638-1e6e-4c84-a390-15f7b30b94ea"/>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{ELEVE_GP_REGIME_ELEVE}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="Column header" x="227" y="43" width="48" height="15" forecolor="#000000" uuid="4bf2e1fd-96af-4700-b0f9-4a22cb28d6da"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<text><![CDATA[Statut]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement style="Detail" x="281" y="41" width="56" height="15" uuid="6fb9cda1-6f86-4834-975d-ceddc539cf81"/>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{ELEVE_GP_STATUT_ELEVE}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="Column header" x="2" y="58" width="56" height="15" forecolor="#000000" uuid="640a6f0b-dd2c-46df-ad31-e27ec089f9b2"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<text><![CDATA[Sexe]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement style="Detail" x="76" y="58" width="58" height="15" uuid="980b2f23-9e4c-456b-b223-2bf235f628a1"/>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{ELEVE_SEXE}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="Column header" x="2" y="41" width="56" height="15" forecolor="#000000" uuid="2f66175e-4f96-43cc-936a-ffcdcae92691"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<text><![CDATA[Prénom]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement style="Detail" x="76" y="40" width="58" height="15" uuid="d414309d-520e-4d4c-9e34-d12162d7745c"/>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{ELEVE_PRENOM_EL}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="Column header" x="2" y="23" width="56" height="15" forecolor="#000000" uuid="5cb3b56b-a086-4d82-9596-de5a9b2240a0"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<text><![CDATA[Nom]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement style="Detail" x="75" y="23" width="58" height="15" uuid="1fa9bf0c-7575-4a26-8d44-13434513363c"/>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{ELEVE_NOM_EL}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="Column header" x="2" y="5" width="56" height="15" forecolor="#000000" uuid="58933219-05fc-4205-ac16-9134e4d5cf89"/>
+					<textElement>
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Matricule]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement style="Detail" x="74" y="87" width="58" height="15" uuid="9e888e77-837b-41e3-9d64-752bc48240ad"/>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{ELEVE_MATRICULE_EL}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="Column header" x="372" y="43" width="50" height="15" uuid="8bbe51e2-d63e-4649-8d27-0b03e56cccaa"/>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+					<text><![CDATA[Photo]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="450" y="87" width="100" height="20" uuid="e4c5a807-5b15-473a-a002-de8cd5173c2b"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{TRIMESTRE_LIB_TRIMES}]]></textFieldExpression>
+				</textField>
+				<frame>
+					<reportElement mode="Opaque" x="0" y="87" width="555" height="20" backcolor="#006633" uuid="5a91e4ab-8429-4756-a739-979eafe8bd8c"/>
+					<staticText>
+						<reportElement style="Column header" x="101" y="0" width="32" height="20" uuid="e6402a45-8a49-46c4-9f50-2c5a699395f5"/>
+						<textElement verticalAlignment="Middle">
+							<paragraph leftIndent="5"/>
+						</textElement>
+						<text><![CDATA[Coef.]]></text>
+					</staticText>
+					<staticText>
+						<reportElement style="Column header" x="132" y="0" width="50" height="20" uuid="466d71d0-698a-4e1e-9f0b-9d76d24d3e31"/>
+						<textElement verticalAlignment="Middle">
+							<paragraph leftIndent="5"/>
+						</textElement>
+						<text><![CDATA[MI]]></text>
+					</staticText>
+					<staticText>
+						<reportElement style="Column header" x="279" y="0" width="50" height="20" uuid="f0f9cfa0-b0c0-43f7-9d3c-b974065d9ccd"/>
+						<textElement verticalAlignment="Middle">
+							<paragraph leftIndent="5"/>
+						</textElement>
+						<text><![CDATA[Moy/20]]></text>
+					</staticText>
+					<staticText>
+						<reportElement style="Column header" x="328" y="0" width="62" height="20" uuid="f89af02b-1c43-4937-99e8-34b5c066602b"/>
+						<textElement verticalAlignment="Middle">
+							<paragraph leftIndent="5"/>
+						</textElement>
+						<text><![CDATA[Moy/Coef]]></text>
+					</staticText>
+					<staticText>
+						<reportElement style="Column header" x="389" y="0" width="41" height="20" uuid="0c00d8cd-d76a-40f2-8711-bd994e3aa430"/>
+						<textElement verticalAlignment="Middle">
+							<paragraph leftIndent="5"/>
+						</textElement>
+						<text><![CDATA[Rang]]></text>
+					</staticText>
+					<staticText>
+						<reportElement style="Column header" x="430" y="0" width="124" height="20" uuid="868ab230-f62f-43a9-bc98-628ed0b6d81a"/>
+						<textElement verticalAlignment="Middle">
+							<paragraph leftIndent="5"/>
+						</textElement>
+						<text><![CDATA[Appréciation du Prof.]]></text>
+					</staticText>
+					<staticText>
+						<reportElement style="Column header" x="181" y="0" width="50" height="20" uuid="3214d76e-9cff-4840-9f34-6f5cd07d4a26"/>
+						<textElement verticalAlignment="Middle">
+							<paragraph leftIndent="5"/>
+						</textElement>
+						<text><![CDATA[Dev]]></text>
+					</staticText>
+					<staticText>
+						<reportElement style="Column header" x="230" y="0" width="50" height="20" uuid="8c53316f-6e0e-42d7-988d-098d98226f82"/>
+						<textElement verticalAlignment="Middle">
+							<paragraph leftIndent="5"/>
+						</textElement>
+						<text><![CDATA[Compo]]></text>
+					</staticText>
+					<staticText>
+						<reportElement style="Column header" x="0" y="0" width="102" height="20" uuid="f14f85d3-8d47-45a3-8d15-89cf8b80ae76"/>
+						<textElement verticalAlignment="Middle">
+							<paragraph leftIndent="5"/>
+						</textElement>
+						<text><![CDATA[Matières]]></text>
+					</staticText>
+				</frame>
+				<textField>
+					<reportElement x="76" y="5" width="56" height="15" uuid="4cba6b49-e1aa-4547-85e8-688560f7ec1a"/>
+					<textFieldExpression><![CDATA[$F{ELEVE_MATRICULE_EL}]]></textFieldExpression>
+				</textField>
+				<rectangle>
+					<reportElement mode="Transparent" x="0" y="87" width="102" height="20" forecolor="#000000" uuid="32a3a9ef-3af4-4041-b9a5-e8c6e01c26ed"/>
+				</rectangle>
+				<rectangle>
+					<reportElement mode="Transparent" x="102" y="87" width="30" height="20" forecolor="#000000" uuid="61a8617c-a448-4f3e-88bf-edee612152af"/>
+				</rectangle>
+				<rectangle>
+					<reportElement mode="Transparent" x="132" y="87" width="49" height="20" forecolor="#000000" uuid="f1bbe743-4d21-4185-b9ed-3bcf210a751b"/>
+				</rectangle>
+				<rectangle>
+					<reportElement mode="Transparent" x="181" y="87" width="49" height="20" forecolor="#000000" uuid="3035cad4-398a-4a38-a10c-9f00e540b786"/>
+				</rectangle>
+				<rectangle>
+					<reportElement mode="Transparent" x="230" y="87" width="50" height="20" forecolor="#000000" uuid="51e44163-f44c-46a7-b07b-897ce41e3d9a"/>
+				</rectangle>
+				<rectangle>
+					<reportElement mode="Transparent" x="280" y="87" width="48" height="20" forecolor="#000000" uuid="2307b1b0-7ee7-4789-a643-270cf0955be9"/>
+				</rectangle>
+				<rectangle>
+					<reportElement mode="Transparent" x="328" y="87" width="62" height="20" forecolor="#000000" uuid="f404f74c-e759-4aea-97e6-d2a8dc613d04"/>
+				</rectangle>
+				<rectangle>
+					<reportElement mode="Transparent" x="390" y="87" width="40" height="20" forecolor="#000000" uuid="0aba1f16-c59d-4c09-bc88-8fd18809e580"/>
+				</rectangle>
+				<rectangle>
+					<reportElement mode="Transparent" x="430" y="87" width="124" height="20" forecolor="#000000" uuid="1141dc6c-7607-44ae-9109-306624722177"/>
+				</rectangle>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="149">
+				<staticText>
+					<reportElement style="Column header" x="7" y="29" width="60" height="15" forecolor="#000000" uuid="4b23adf2-4bb2-4187-b585-e60e7435118a"/>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+					<text><![CDATA[Moy. Trim.]]></text>
+				</staticText>
+				<textField pattern="###0.00" isBlankWhenNull="true">
+					<reportElement style="Detail" x="67" y="29" width="48" height="15" uuid="4f0322f5-7007-4bfa-9026-6e6217caa4db"/>
+					<textFieldExpression><![CDATA[$F{BULLETIN_NOTE_MOY_TRIM}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="Column header" x="115" y="29" width="36" height="15" forecolor="#000000" uuid="4dac5b8f-51c2-4280-a97c-a9aafa74124c"/>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+					<text><![CDATA[Rang]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement style="Detail" x="151" y="29" width="34" height="15" uuid="4c06f01b-c959-4ce2-bacd-c321ed759dc4"/>
+					<textFieldExpression><![CDATA[$F{BULLETIN_NOTE_RANG}]]></textFieldExpression>
+				</textField>
+				<rectangle>
+					<reportElement mode="Transparent" x="390" y="1" width="164" height="148" uuid="3d494d49-77fb-4289-8ffb-64fa42778a3d"/>
+				</rectangle>
+				<staticText>
+					<reportElement style="Column header" x="429" y="14" width="108" height="15" forecolor="#000000" uuid="c8ea3435-a2bf-4db4-af02-4f503d5b928f"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<text><![CDATA[Plus Forte Moy.]]></text>
+				</staticText>
+				<textField pattern="###0.00" isBlankWhenNull="true">
+					<reportElement style="Detail" x="464" y="33" width="51" height="15" uuid="75b55957-6d13-486b-a769-6c30894c29a6"/>
+					<textFieldExpression><![CDATA[$F{BULLETIN_NOTE_PLUS_FORTE_MOY}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="Column header" x="422" y="56" width="116" height="15" forecolor="#000000" uuid="51fc70f1-c6c8-4e0e-98e9-fdfc856e6fb9"/>
+					<text><![CDATA[Plus Faible Moy.]]></text>
+				</staticText>
+				<textField pattern="###0.00" isBlankWhenNull="true">
+					<reportElement style="Detail" x="465" y="75" width="52" height="15" uuid="4a17462a-768f-48b8-acd7-6e3606009632"/>
+					<textFieldExpression><![CDATA[$F{BULLETIN_NOTE_PLUS_FAIBLE_MOY}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="Column header" x="422" y="99" width="116" height="15" forecolor="#000000" uuid="7c206e62-337b-4009-8862-700cbc436df7"/>
+					<text><![CDATA[Moy. Classe]]></text>
+				</staticText>
+				<textField pattern="###0.00" isBlankWhenNull="true">
+					<reportElement style="Detail" x="465" y="122" width="52" height="15" uuid="6f119f6d-d05a-45ff-bbbb-bc564f373b9c"/>
+					<textFieldExpression><![CDATA[$F{BULLETIN_NOTE_MOY_CLASSE}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="7" y="82" width="99" height="20" uuid="3113eab6-c7ab-457a-a9ce-2d40802045c8"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Félicitation]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="6" y="60" width="100" height="20" uuid="13a5ca92-9517-490d-80f6-9321f08a3c49"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Tableau d'Honneur]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="7" y="102" width="99" height="20" uuid="fddbb814-91f8-4d37-beb3-c28d5357dd7e"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Blâme]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="191" y="60" width="100" height="20" uuid="16c564cd-30b3-427a-bb0a-fd9e035839af"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Encouragement]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="191" y="102" width="100" height="20" uuid="7871dccf-bd58-4a0a-a499-233c7d4746fd"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Exclusion]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="191" y="82" width="100" height="20" uuid="b7f349da-9af2-45f4-8825-cf9e69c8fe94"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Avertissement]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Title" mode="Transparent" x="0" y="1" width="293" height="28" uuid="353b0c31-dd51-4acd-bbb9-fd2384fbc3e4"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="20"/>
+					</textElement>
+					<text><![CDATA[TOTAL]]></text>
+				</staticText>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="COEFFICIENT_ID_COEF">
+		<groupExpression><![CDATA[$F{COEFFICIENT_ID_COEF}]]></groupExpression>
+	</group>
+	<background>
+		<band height="822" splitType="Stretch">
+			<rectangle>
+				<reportElement positionType="Float" x="-20" y="-257" width="20" height="173" backcolor="#006633" uuid="0b0b2440-3e51-4166-8e76-2b8086480c3b"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+		</band>
+	</background>
+	<title>
+		<band height="102" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement mode="Transparent" x="153" y="71" width="228" height="25" uuid="6609817d-f0e8-4424-a695-1096541becec"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="334" y="1" width="100" height="20" uuid="9ac61fff-1085-40d6-a7cf-43d0ccc32df2"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[Année Scolaire]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="1" width="121" height="15" uuid="283918d0-6d79-4813-b98b-2dd4ad7b53d7"/>
+				<text><![CDATA[REPUBLIQUE DU BENIN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="153" y="71" width="228" height="25" forecolor="#000000" uuid="6f8d7066-4d74-43ab-885d-d3ccc672a14e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[BULLETIN DE NOTES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Title" x="0" y="31" width="555" height="33" uuid="4ca4db98-3b9a-4949-b17c-2c138cb9f107"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="18" isBold="false"/>
+				</textElement>
+				<text><![CDATA[COLLEGE PRIVE ASSAFWA "LES ELITES"]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="435" y="0" width="30" height="21" uuid="b93358ef-d0e2-40f8-aa88-e83395c9b17a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ANNEE_SCOLAIRE_ANNEE_DEBUT}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="484" y="1" width="47" height="20" uuid="03d5b342-bad0-4486-ab5a-b537b433968f"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ANNEE_SCOLAIRE_ANNEE_FIN}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="467" y="1" width="15" height="20" uuid="2b9c35cc-c5f3-4a41-a612-85054863b216"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[-]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<detail>
+		<band height="19" splitType="Stretch">
+			<frame>
+				<reportElement x="-20" y="0" width="590" height="19" uuid="f2d31f2c-66ec-43be-8b56-1145cbd3877b"/>
+				<rectangle>
+					<reportElement x="20" y="0" width="102" height="19" uuid="a45ba93a-4747-4b6b-b510-a3e8fec184f4"/>
+				</rectangle>
+				<rectangle>
+					<reportElement x="122" y="0" width="30" height="19" uuid="27e5e1ea-2833-45b8-aba7-9009bc654fc1"/>
+				</rectangle>
+				<rectangle>
+					<reportElement x="152" y="0" width="49" height="19" uuid="a12dd98f-525e-4c89-94cd-f3862470a35d"/>
+				</rectangle>
+				<rectangle>
+					<reportElement x="201" y="0" width="49" height="19" uuid="25e57dc0-332f-49fe-a0f4-7cb112795f40"/>
+				</rectangle>
+				<rectangle>
+					<reportElement x="250" y="0" width="50" height="19" uuid="378e9080-d43b-4464-b8b3-5654ce0bc56a"/>
+				</rectangle>
+				<rectangle>
+					<reportElement x="300" y="0" width="48" height="19" uuid="e0f6da93-6021-4ecd-9385-8fa304a6fb29"/>
+				</rectangle>
+				<rectangle>
+					<reportElement x="348" y="0" width="62" height="19" uuid="b09d0fc7-f47c-42ed-a785-f48c05c83ba4"/>
+				</rectangle>
+				<rectangle>
+					<reportElement x="410" y="0" width="40" height="19" uuid="fe415fef-4bc9-4cab-9ebe-7434732689d1"/>
+				</rectangle>
+				<rectangle>
+					<reportElement x="450" y="0" width="124" height="19" uuid="2fdfb5de-be7b-4fbb-ae17-2586d0b8853f"/>
+				</rectangle>
+				<textField isBlankWhenNull="true">
+					<reportElement style="Detail" x="409" y="0" width="41" height="19" uuid="fbb5a54f-5a5a-4c5e-a5a0-0c29ecc27597"/>
+					<textElement verticalAlignment="Middle">
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{DETAILS_BULLETIN_RANG}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement style="Detail" isPrintRepeatedValues="false" x="451" y="0" width="124" height="19" uuid="482931f3-e8da-4e68-9751-b2f2474678c3"/>
+					<textElement verticalAlignment="Middle">
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{DETAILS_BULLETIN_APPRE_SIGNE_P}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement style="Detail" x="201" y="0" width="50" height="19" uuid="1e519f30-b792-4ebd-8ecf-c7f8e620a9af"/>
+					<textElement verticalAlignment="Middle">
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{DETAILS_BULLETIN_DEV_NOTE}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement style="Detail" x="250" y="0" width="50" height="19" uuid="c0005622-2498-490a-b364-18fc274c0843"/>
+					<textElement verticalAlignment="Middle">
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{DETAILS_BULLETIN_COMPO_NOTE}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0.00" isBlankWhenNull="true">
+					<reportElement style="Detail" x="299" y="0" width="49" height="19" uuid="013285ef-6cf2-4926-852b-2baa5f09d7f7"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{DETAILS_BULLETIN_MOY_20}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement style="Detail" x="20" y="0" width="101" height="19" uuid="35d57008-e0cc-433f-85c1-0a806ddcdc7c"/>
+					<textElement verticalAlignment="Middle">
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{MATIERE_LIB_MATIERE}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement style="Detail" x="122" y="0" width="30" height="19" uuid="488c2541-16d4-4bb4-b1d9-900e6d1a93b0"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{COEFFICIENT_VALEUR_COEF}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0.00" isBlankWhenNull="true">
+					<reportElement style="Detail" x="348" y="0" width="62" height="19" uuid="39e7d11c-7b8e-4df1-becd-6e1e7a1edc56"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{DETAILS_BULLETIN_MOY_COEF}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement style="Detail" x="152" y="0" width="49" height="19" uuid="bfb8698a-5e76-4c78-8503-834f5f90d99c"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{DETAILS_BULLETIN_MOY_INT}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="58" splitType="Stretch">
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement style="Column header" x="115" y="34" width="131" height="20" forecolor="#000000" uuid="93a34a4b-197d-4113-a21d-07984e11a791"/>
+				<textElement textAlignment="Right">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<frame>
+				<reportElement mode="Opaque" x="405" y="21" width="150" height="20" forecolor="#CCCCCC" backcolor="#009966" uuid="2c1e21c4-60a9-4ac4-acce-091f42d62fcc"/>
+			</frame>
+			<textField isBlankWhenNull="true">
+				<reportElement style="Detail" x="381" y="2" width="171" height="15" uuid="c5688e39-fe7a-40e4-aa62-63dc3a380bb0"/>
+				<textFieldExpression><![CDATA[$F{BULLETIN_NOTE_APRE_CHEF_ETABLI}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="18" y="2" width="299" height="15" forecolor="#000000" uuid="e078a4fa-4b3f-4d1d-b212-599adc08f713"/>
+				<text><![CDATA[Appréciation du Chef de l'Etablissement]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

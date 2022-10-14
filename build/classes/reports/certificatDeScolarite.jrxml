@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="certificatDeScolarite" language="groovy" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7dd6f4ec-6249-4f8d-bf27-d586e642b0ff">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     ELEVE."ID_ELEVE" AS ELEVE_ID_ELEVE,
+     ELEVE."NOM_EL" AS ELEVE_NOM_EL,
+     ELEVE."PRENOM_EL" AS ELEVE_PRENOM_EL,
+     ELEVE."DATE_NAIS" AS ELEVE_DATE_NAIS,
+     ELEVE."LIEU_NAIS" AS ELEVE_LIEU_NAIS,
+     ELEVE."SEXE" AS ELEVE_SEXE,
+     ELEVE."DATE_INSCRI" AS ELEVE_DATE_INSCRI,
+     ELEVE."PHOTO_IDENT" AS ELEVE_PHOTO_IDENT,
+     GROUP_PEDAG."ID_GROUP_PEDAG" AS GROUP_PEDAG_ID_GROUP_PEDAG,
+     GROUP_PEDAG."LIB_GROUP_PEDAG" AS GROUP_PEDAG_LIB_GROUP_PEDAG,
+     GROUP_PEDAG."EFFECTIF" AS GROUP_PEDAG_EFFECTIF,
+     GROUP_PEDAG."ID_SERIE" AS GROUP_PEDAG_ID_SERIE,
+     GROUP_PEDAG."ID_PROMO" AS GROUP_PEDAG_ID_PROMO,
+     ELEVE_GP."ID_ELEVE_GP" AS ELEVE_GP_ID_ELEVE_GP,
+     ELEVE_GP."ID_GROUP_PEDAG" AS ELEVE_GP_ID_GROUP_PEDAG,
+     ELEVE_GP."ID_ELEVE" AS ELEVE_GP_ID_ELEVE,
+     ELEVE_GP."STATUT_ELEVE" AS ELEVE_GP_STATUT_ELEVE,
+     ELEVE_GP."ID_ANNEE_SCOLAIRE" AS ELEVE_GP_ID_ANNEE_SCOLAIRE
+FROM
+     "SCOLAIRE"."ELEVE" ELEVE INNER JOIN "SCOLAIRE"."ELEVE_GP" ELEVE_GP ON ELEVE."ID_ELEVE" = ELEVE_GP."ID_ELEVE"
+     INNER JOIN "SCOLAIRE"."GROUP_PEDAG" GROUP_PEDAG ON ELEVE_GP."ID_GROUP_PEDAG" = GROUP_PEDAG."ID_GROUP_PEDAG"]]>
+	</queryString>
+	<field name="ELEVE_ID_ELEVE" class="java.math.BigDecimal"/>
+	<field name="ELEVE_NOM_EL" class="java.lang.String"/>
+	<field name="ELEVE_PRENOM_EL" class="java.lang.String"/>
+	<field name="ELEVE_DATE_NAIS" class="java.sql.Timestamp"/>
+	<field name="ELEVE_LIEU_NAIS" class="java.lang.String"/>
+	<field name="ELEVE_DATE_INSCRI" class="java.sql.Timestamp"/>
+	<field name="GROUP_PEDAG_LIB_GROUP_PEDAG" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="89" splitType="Stretch">
+			<staticText>
+				<reportElement x="167" y="0" width="305" height="38" uuid="5ee8177b-0a15-45d7-b34a-5c100fe11f8d"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font fontName="Arial Narrow" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MINISTERE DES ENSEIGNEMENTS PRIMAIRE ET SECONDAIRE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="118" y="38" width="409" height="20" uuid="a99f220c-63d9-49fd-81c6-2db140e09818"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial Narrow" size="14"/>
+				</textElement>
+				<text><![CDATA[Direction Départementale des Enseignements Primaire et Secondaire de Littoral]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="180" y="58" width="277" height="20" uuid="07a232f1-0d4a-4816-b35f-d89723e9a453"/>
+				<textElement>
+					<font fontName="Arial Narrow" size="14" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Centre Socio Educatif ASSAFWA "LES ELITES"]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="582" splitType="Stretch">
+			<staticText>
+				<reportElement x="159" y="11" width="256" height="34" uuid="87e64bd0-d31f-4ce7-ac51-804a8da0be61"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial Narrow" size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CERTIFICAT DE SCOLARITE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="45" width="234" height="17" uuid="df88dd3c-ce7e-437e-83f8-3afcccbb8a56"/>
+				<textElement>
+					<font fontName="Arial Narrow" size="12"/>
+				</textElement>
+				<text><![CDATA[Le Directeur du Collège ASSAFWA"LES ELITES"]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="62" width="84" height="20" uuid="e2c90a3d-1345-4638-aabd-d15bf29b5849"/>
+				<textElement>
+					<font fontName="Arial Narrow" size="12"/>
+				</textElement>
+				<text><![CDATA[Certifie que l'élève]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="86" y="62" width="369" height="20" uuid="0618390e-a629-449d-81d8-1c4c76510c12"/>
+				<textElement>
+					<font fontName="Arial Narrow" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ELEVE_NOM_EL} + " " + $F{ELEVE_PRENOM_EL}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="102" width="33" height="20" uuid="174f68ab-8b4d-48d6-9bf5-1f943c0d6122"/>
+				<textElement>
+					<font fontName="Arial Narrow" size="12"/>
+				</textElement>
+				<text><![CDATA[Né(e) à]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="33" y="102" width="214" height="20" uuid="ba90f69d-d13e-4fc0-abc6-1a7f4ea5c7e7"/>
+				<textElement>
+					<font fontName="Arial Narrow" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ELEVE_LIEU_NAIS}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="247" y="102" width="13" height="20" uuid="44bc249c-90b1-4879-b881-793e5357bb83"/>
+				<textElement>
+					<font fontName="Arial Narrow" size="12"/>
+				</textElement>
+				<text><![CDATA[le]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="260" y="102" width="212" height="20" uuid="9165df71-5843-443d-bafa-3f6b3d21df10"/>
+				<textElement>
+					<font fontName="Arial Narrow" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ELEVE_DATE_NAIS}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="122" width="132" height="20" uuid="1229f0bd-1571-4d1e-972b-c162bc313590"/>
+				<textElement>
+					<font fontName="Arial Narrow" size="12"/>
+				</textElement>
+				<text><![CDATA[inscrit(e) sous le N° matricule]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="134" y="122" width="188" height="20" uuid="2479f3df-d6ad-4735-8f18-6a392cbc1579"/>
+				<textElement>
+					<font fontName="Arial Narrow" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ELEVE_ID_ELEVE}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="322" y="122" width="171" height="20" uuid="7b69a0d3-0c61-48b8-ae4d-6e257ea784d5"/>
+				<textElement>
+					<font fontName="Arial Narrow" size="12"/>
+				</textElement>
+				<text><![CDATA[fréquente ledit établissement dépuis le]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="142" width="180" height="20" uuid="704f328f-7095-437c-8cf5-1404bcdf634d"/>
+				<textElement>
+					<font fontName="Arial Narrow" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ELEVE_DATE_INSCRI}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="180" y="142" width="225" height="20" uuid="638458dd-05ac-47e7-b12d-a42ac18448c7"/>
+				<textElement>
+					<font fontName="Arial Narrow" size="12"/>
+				</textElement>
+				<text><![CDATA[et y poursuit présentement ses études en classe de ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="415" y="142" width="140" height="20" uuid="e14629b8-7b1a-4275-99bc-1ad0ff944867"/>
+				<textElement>
+					<font fontName="Arial Narrow" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{GROUP_PEDAG_LIB_GROUP_PEDAG}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="162" width="159" height="20" uuid="23ed2f78-3a3b-46c9-afc2-00d6e2351644"/>
+				<textElement>
+					<font fontName="Arial Narrow" size="12"/>
+				</textElement>
+				<text><![CDATA[avec les appréciations suivantes :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="144" y="194" width="48" height="20" uuid="fa1b286a-a77c-44bb-9aa1-37fbf49efae9"/>
+				<textElement>
+					<font fontName="Arial Narrow" size="12"/>
+				</textElement>
+				<text><![CDATA[Assiduité :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="144" y="214" width="48" height="20" uuid="511d6bfc-9066-478e-bc0c-599b6aae40ed"/>
+				<textElement>
+					<font fontName="Arial Narrow" size="12"/>
+				</textElement>
+				<text><![CDATA[Conduite :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="144" y="234" width="45" height="20" uuid="73a21141-a878-4d78-bd85-01a0db5c3461"/>
+				<textElement>
+					<font fontName="Arial Narrow" size="12"/>
+				</textElement>
+				<text><![CDATA[Travail :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4" y="282" width="176" height="28" uuid="473569d4-9ce1-4729-85e4-e30ef71c060d"/>
+				<textElement>
+					<font fontName="Arial Narrow" size="18"/>
+				</textElement>
+				<text><![CDATA[Observations particulieres]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4" y="325" width="551" height="20" uuid="4d18095c-a9a9-4aa6-a2d2-ca03e40c0e80"/>
+				<textElement>
+					<font fontName="Arial Narrow"/>
+				</textElement>
+				<text><![CDATA[........................................................................................................................................................................................]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4" y="345" width="551" height="20" uuid="1574afc0-f5a0-46ba-9104-33662e25a481"/>
+				<textElement>
+					<font fontName="Arial Narrow"/>
+				</textElement>
+				<text><![CDATA[........................................................................................................................................................................................]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4" y="365" width="551" height="20" uuid="8831ff3d-0e2c-4ea3-bcda-1949ee7c9dbc"/>
+				<textElement>
+					<font fontName="Arial Narrow"/>
+				</textElement>
+				<text><![CDATA[.........................................................................................................................................................................................]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4" y="385" width="551" height="20" uuid="35004222-8235-4fcf-b03d-853887429a35"/>
+				<textElement>
+					<font fontName="Arial Narrow"/>
+				</textElement>
+				<text><![CDATA[.........................................................................................................................................................................................]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="399" y="531" width="156" height="20" uuid="987021b0-1b99-47e8-a89b-5b90393cb55a"/>
+				<textElement>
+					<font fontName="Arial Narrow" size="12"/>
+				</textElement>
+				<text><![CDATA[Cotonou, le ...................... 20 ........]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="399" y="428" width="128" height="20" uuid="f54cad7d-f20b-4557-8265-cc3304377a28"/>
+				<textElement>
+					<font fontName="Arial Narrow" size="14"/>
+				</textElement>
+				<text><![CDATA[Le Directeur du Collège]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

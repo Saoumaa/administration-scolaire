@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rapportActivite" pageWidth="612" pageHeight="792" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" whenResourceMissingType="Empty" uuid="20dde06a-e138-42c8-91f5-7d49cb3ebe03">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     ACTIVITE."ACTIVITE_CODE" AS ACTIVITE_ACTIVITE_CODE,
+     ACTIVITE."ACTIVITE_LIBELLE" AS ACTIVITE_ACTIVITE_LIBELLE,
+     ACTIVITE."ACTIVITE_DATE" AS ACTIVITE_ACTIVITE_DATE,
+     ACTIVITE."ACTIVITE_SUPERVISEUR" AS ACTIVITE_ACTIVITE_SUPERVISEUR,
+     ACTIVITE."ACTIVITE_RAPPORTEUR" AS ACTIVITE_ACTIVITE_RAPPORTEUR,
+     ACTIVITE."ACTIVITE_RAPPORT" AS ACTIVITE_ACTIVITE_RAPPORT,
+     ACTIVITE."ACTIVITE_ANNEE" AS ACTIVITE_ACTIVITE_ANNEE
+FROM
+     "SCOLAIRE"."ACTIVITE" ACTIVITE]]>
+	</queryString>
+	<field name="ACTIVITE_ACTIVITE_LIBELLE" class="java.lang.String"/>
+	<field name="ACTIVITE_ACTIVITE_DATE" class="java.sql.Timestamp"/>
+	<field name="ACTIVITE_ACTIVITE_SUPERVISEUR" class="java.lang.String"/>
+	<field name="ACTIVITE_ACTIVITE_RAPPORTEUR" class="java.lang.String"/>
+	<field name="ACTIVITE_ACTIVITE_RAPPORT" class="java.lang.String"/>
+	<field name="ACTIVITE_ACTIVITE_ANNEE" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="105" splitType="Stretch">
+			<staticText>
+				<reportElement x="160" y="10" width="305" height="38" uuid="44cde375-9e01-4386-b8e6-0742e6c42e8d"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font fontName="Arial Narrow" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MINISTERE DES ENSEIGNEMENTS PRIMAIRE ET SECONDAIRE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="188" y="68" width="277" height="20" uuid="7e69ca7b-793d-4549-b56d-59a08a351840"/>
+				<textElement>
+					<font fontName="Arial Narrow" size="14" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Centre Socio Educatif ASSAFWA "LES ELITES"]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="132" y="48" width="409" height="20" uuid="e4d286d0-5e9c-49a4-a93c-9e0c1a79dfed"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial Narrow" size="14"/>
+				</textElement>
+				<text><![CDATA[Direction Départementale des Enseignements Primaire et Secondaire de Littoral]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="65" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="14" width="188" height="27" uuid="4c286f55-8436-412a-a7f5-8e2a212823bc"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial Narrow" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RAPPORT D'ACTIVITE]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="200" y="14" width="362" height="27" uuid="17c7ccbc-d191-412d-b184-8b4c49e6e3d0"/>
+				<textElement>
+					<font size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ACTIVITE_ACTIVITE_LIBELLE}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="2" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="572" height="125" uuid="301010b7-ed32-4905-946b-de2292a60400"/>
+				<textFieldExpression><![CDATA[$F{ACTIVITE_ACTIVITE_RAPPORT}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="361" y="34" width="211" height="20" uuid="bdda6d77-dddd-424c-93be-05a410d1aa88"/>
+				<textFieldExpression><![CDATA[$F{ACTIVITE_ACTIVITE_SUPERVISEUR}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="34" width="200" height="20" uuid="5e7aa1d2-8f69-43fe-8095-1794396cdf7d"/>
+				<textFieldExpression><![CDATA[$F{ACTIVITE_ACTIVITE_RAPPORTEUR}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="0" width="188" height="27" uuid="119cf38e-e950-41da-86ef-508b6486cbb7"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial Narrow" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RAPPORTEUR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="384" y="0" width="188" height="27" uuid="06c29a6e-5673-40b1-aae2-1ba8d59b43ce"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial Narrow" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SUPERVISEUR]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

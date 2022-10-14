@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="listeEleveAnnee" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f412161c-085c-4ecf-ad13-5fceb2b3232a">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<style name="Row" mode="Transparent">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#E6DAC3"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="idAnnee" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[SELECT
+     ANNEE_SCOLAIRE."ID_ANNEE_SCOLAIRE" AS ANNEE_SCOLAIRE_ID_ANNEE_SCOLAI,
+     ANNEE_SCOLAIRE."ANNEE_DEBUT" AS ANNEE_SCOLAIRE_ANNEE_DEBUT,
+     ANNEE_SCOLAIRE."ANNEE_FIN" AS ANNEE_SCOLAIRE_ANNEE_FIN,
+     ELEVE_GP."ID_ELEVE_GP" AS ELEVE_GP_ID_ELEVE_GP,
+     ELEVE_GP."ID_GROUP_PEDAG" AS ELEVE_GP_ID_GROUP_PEDAG,
+     ELEVE_GP."ID_ELEVE" AS ELEVE_GP_ID_ELEVE,
+     ELEVE_GP."STATUT_ELEVE" AS ELEVE_GP_STATUT_ELEVE,
+     ELEVE_GP."ID_ANNEE_SCOLAIRE" AS ELEVE_GP_ID_ANNEE_SCOLAIRE,
+     ELEVE."ID_ELEVE" AS ELEVE_ID_ELEVE,
+     ELEVE."NOM_EL" AS ELEVE_NOM_EL,
+     ELEVE."PRENOM_EL" AS ELEVE_PRENOM_EL,
+     ELEVE."DATE_NAIS" AS ELEVE_DATE_NAIS,
+     ELEVE."LIEU_NAIS" AS ELEVE_LIEU_NAIS,
+     ELEVE."SEXE" AS ELEVE_SEXE,
+     ELEVE."DATE_INSCRI" AS ELEVE_DATE_INSCRI,
+     ELEVE."PHOTO_IDENT" AS ELEVE_PHOTO_IDENT,
+     GROUP_PEDAG."ID_GROUP_PEDAG" AS GROUP_PEDAG_ID_GROUP_PEDAG,
+     GROUP_PEDAG."LIB_GROUP_PEDAG" AS GROUP_PEDAG_LIB_GROUP_PEDAG,
+     GROUP_PEDAG."EFFECTIF" AS GROUP_PEDAG_EFFECTIF,
+     GROUP_PEDAG."ID_SERIE" AS GROUP_PEDAG_ID_SERIE,
+     GROUP_PEDAG."ID_PROMO" AS GROUP_PEDAG_ID_PROMO
+FROM
+     	ANNEE_SCOLAIRE, ELEVE_GP, ELEVE, GROUP_PEDAG
+WHERE 	ANNEE_SCOLAIRE."ID_ANNEE_SCOLAIRE" = ELEVE_GP."ID_ANNEE_SCOLAIRE"
+AND 	ELEVE_GP."ID_ELEVE" = ELEVE."ID_ELEVE"
+AND 	ELEVE_GP."ID_GROUP_PEDAG" = GROUP_PEDAG."ID_GROUP_PEDAG"
+AND 	ELEVE_GP."ID_ANNEE_SCOLAIRE" = $P{idAnnee}]]>
+	</queryString>
+	<field name="ANNEE_SCOLAIRE_ID_ANNEE_SCOLAI" class="java.math.BigDecimal"/>
+	<field name="ANNEE_SCOLAIRE_ANNEE_DEBUT" class="java.math.BigDecimal"/>
+	<field name="ANNEE_SCOLAIRE_ANNEE_FIN" class="java.math.BigDecimal"/>
+	<field name="ELEVE_GP_ID_ELEVE_GP" class="java.math.BigDecimal"/>
+	<field name="ELEVE_GP_ID_GROUP_PEDAG" class="java.math.BigDecimal"/>
+	<field name="ELEVE_GP_ID_ELEVE" class="java.math.BigDecimal"/>
+	<field name="ELEVE_GP_STATUT_ELEVE" class="java.lang.String"/>
+	<field name="ELEVE_GP_ID_ANNEE_SCOLAIRE" class="java.math.BigDecimal"/>
+	<field name="ELEVE_ID_ELEVE" class="java.math.BigDecimal"/>
+	<field name="ELEVE_NOM_EL" class="java.lang.String"/>
+	<field name="ELEVE_PRENOM_EL" class="java.lang.String"/>
+	<field name="ELEVE_DATE_NAIS" class="java.sql.Timestamp"/>
+	<field name="ELEVE_LIEU_NAIS" class="java.lang.String"/>
+	<field name="ELEVE_SEXE" class="java.lang.String"/>
+	<field name="ELEVE_DATE_INSCRI" class="java.sql.Timestamp"/>
+	<field name="ELEVE_PHOTO_IDENT" class="java.lang.String"/>
+	<field name="GROUP_PEDAG_ID_GROUP_PEDAG" class="java.math.BigDecimal"/>
+	<field name="GROUP_PEDAG_LIB_GROUP_PEDAG" class="java.lang.String"/>
+	<field name="GROUP_PEDAG_EFFECTIF" class="java.math.BigDecimal"/>
+	<field name="GROUP_PEDAG_ID_SERIE" class="java.math.BigDecimal"/>
+	<field name="GROUP_PEDAG_ID_PROMO" class="java.math.BigDecimal"/>
+	<group name="ELEVE_GP_ID_GROUP_PEDAG">
+		<groupExpression><![CDATA[$F{ELEVE_GP_ID_GROUP_PEDAG}]]></groupExpression>
+		<groupHeader>
+			<band height="37">
+				<frame>
+					<reportElement mode="Opaque" x="1" y="7" width="551" height="24" forecolor="#B89F7D" backcolor="#F2EBDF" uuid="531219a1-2e82-43e6-80e9-3d4958090fe3"/>
+					<rectangle>
+						<reportElement mode="Opaque" x="21" y="0" width="36" height="24" backcolor="#736343" uuid="8fdb3e90-9bdf-4eb8-885d-c01fadf0018c"/>
+						<graphicElement>
+							<pen lineWidth="0.0"/>
+						</graphicElement>
+					</rectangle>
+					<textField>
+						<reportElement style="SubTitle" x="68" y="0" width="43" height="24" forecolor="#736343" uuid="90b03342-edc2-416a-a3ed-1f3c48b7897d"/>
+						<textElement>
+							<font isBold="true"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{ELEVE_GP_ID_GROUP_PEDAG}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement style="Column header" x="111" y="0" width="69" height="24" forecolor="#736343" uuid="eba5136c-bf3e-49a3-a65e-95744b6fb8f9"/>
+						<textElement>
+							<font size="18"/>
+						</textElement>
+						<text><![CDATA[Classe]]></text>
+					</staticText>
+					<textField isStretchWithOverflow="true">
+						<reportElement style="Detail" x="180" y="0" width="192" height="24" uuid="2da16e4d-b6a0-4e0d-abd8-9cb19886aa70"/>
+						<textElement>
+							<font size="18"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{GROUP_PEDAG_LIB_GROUP_PEDAG}]]></textFieldExpression>
+					</textField>
+				</frame>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="6"/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="136" splitType="Stretch">
+			<staticText>
+				<reportElement style="Title" x="170" y="0" width="263" height="62" uuid="8ab48d12-2eac-4cd7-8a71-b730fc681067"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="24" pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[LISTE DES ELEVES PAR ANNEE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="1" y="100" width="169" height="15" forecolor="#736343" uuid="091b1a99-ce12-4e74-8175-26d6c2c84d18"/>
+				<text><![CDATA[ANNEE SCOLAIRE]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" x="181" y="100" width="95" height="15" uuid="7f63ac9a-d4b4-49cf-9056-d68c23a8d485"/>
+				<textFieldExpression><![CDATA[$F{ANNEE_SCOLAIRE_ANNEE_DEBUT}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" x="289" y="100" width="126" height="15" uuid="e65c1101-45e6-429c-853c-6a7dcbbb6d74"/>
+				<textFieldExpression><![CDATA[$F{ANNEE_SCOLAIRE_ANNEE_FIN}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1" uuid="02c8960c-ada0-47be-bd6a-6138bf694227"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="Column header" x="1" y="0" width="69" height="15" forecolor="#736343" uuid="ccc254c3-b0be-46ba-92b2-d8bcc0d90e6a"/>
+				<text><![CDATA[N°]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="427" y="1" width="127" height="15" forecolor="#736343" uuid="824d8269-9d55-4b50-8e9e-cb87f978507a"/>
+				<text><![CDATA[STATUT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="70" y="1" width="111" height="15" forecolor="#736343" uuid="13140459-087c-4a2f-9ee8-c3ee1423ae93"/>
+				<text><![CDATA[NOM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="181" y="1" width="146" height="15" forecolor="#736343" uuid="9bfa609b-3913-424d-baea-1e747f8494b1"/>
+				<text><![CDATA[PRENOM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="327" y="0" width="100" height="15" forecolor="#736343" uuid="de6a244b-fa37-491c-9e69-c88d8e03daad"/>
+				<text><![CDATA[SEXE]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<frame>
+				<reportElement style="Row" mode="Opaque" x="0" y="0" width="555" height="15" uuid="92ab669a-a8d2-4766-8871-0fc18ee76407"/>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="1" y="0" width="69" height="15" uuid="43c10f23-7b1c-442a-9b5b-6b1dd1f4806d"/>
+					<textFieldExpression><![CDATA[$F{ELEVE_GP_ID_ELEVE}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="427" y="0" width="128" height="15" uuid="9697b15b-03f5-452e-8fa3-6fd8f59bd928"/>
+					<textFieldExpression><![CDATA[$F{ELEVE_GP_STATUT_ELEVE}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="70" y="0" width="111" height="15" uuid="db83ffea-91b2-4f30-bed5-6969c551aa4f"/>
+					<textFieldExpression><![CDATA[$F{ELEVE_NOM_EL}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="180" y="0" width="147" height="15" uuid="69a753d1-5f7d-408c-9e6f-74c8416ccdf0"/>
+					<textFieldExpression><![CDATA[$F{ELEVE_PRENOM_EL}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="327" y="0" width="99" height="15" uuid="1b5af982-b7c7-4987-8612-1bfb4c28da79"/>
+					<textFieldExpression><![CDATA[$F{ELEVE_SEXE}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="8d00589c-f508-47d6-bc1e-4314f4c8afde"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="-21" y="1" width="597" height="24" forecolor="#D0B48E" backcolor="#F2EBDF" uuid="0a73c805-c19d-4169-b2b3-4860b3a7551b"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="533" y="0" width="40" height="20" forecolor="#736343" uuid="0be97448-e1d3-4eff-aacb-aa03ec39863e"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="453" y="0" width="80" height="20" forecolor="#736343" uuid="6dda96a0-c61c-4007-936d-5f27d1a6dda1"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="22" y="1" width="197" height="20" forecolor="#736343" uuid="96b5b726-edc5-4f78-a4e9-076f0b0b66e2"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
